@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/barbecue-1.5-beta1.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/batik-ext.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/httpcore-4.0.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/jtds-1.2.2.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/log4j-1.2.8.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/postgresql-8.1-405.jdbc3.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/saaj.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/barbecue-1.5-beta1.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/batik-ext.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/httpcore-4.0.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/jtds-1.2.2.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-1.2.8.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/saaj.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="WEB-INF/classes"/>
+</classpath>

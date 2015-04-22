@@ -36,7 +36,7 @@ if(session.getAttribute("usuario")!=null){
 		data_grid = data_ini;		
 	}
 	
-	if ((data_ini==null) || (data_ini.equals(""))) {
+	if ((data_grid==null) || (data_grid.equals(""))) {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		data_grid = formatter.format(new Date());		
 	}
@@ -225,7 +225,7 @@ $(document).ready(function() {
 		form.data_grid.value = form.data_depois.value;
 		form.action="cad_agendamento.jsp";
 		form.submit();
-	});	
+	});
 	
 	$( ".data" ).datepicker();
 	$(".ui-datepicker-trigger").css('position', 'relative');
@@ -303,7 +303,7 @@ function cancela_evento(evento) {
         evento.returnValue = false;
         // Cancela a propagação para o IE
         evento.cancelBubble = true;
-	}
+    }
 }
 
 </script>
@@ -324,7 +324,7 @@ function cancela_evento(evento) {
 		           
 		           </div>
 		           <% }%>
-		           
+		  
 		           <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">                
 		           		   	  <strong>Data Inicial:</strong><br> &nbsp;<input class="data glowing-border" style="WIDTH: 80%" id="data_ini" name="data_ini" type="text" maxlength="100" value="<%=data_ini %>" onchange="return montaGrid()">
 		           </div>
@@ -380,9 +380,9 @@ function cancela_evento(evento) {
 		           		   	  </select>
 		           		   	  
 		           </div>
-		           
-              		<div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">       
-		           	
+            
+                    <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+		                     
 		           		   	  <strong>Professor:</strong><br> &nbsp;
 		           		   	  <%HC_Lab_pessoa professor = new HC_Lab_pessoa();
 		           		   	   professor.setConnexao(conn);
@@ -399,18 +399,18 @@ function cancela_evento(evento) {
 		           		   	  <% }%>
 		           		   	  </select>
 		           		   	  
-		           	</div>
+		           </div>
 		           	
 	           	
             </div>
             
-             <div class="row">  
-		         
+             <div class="row">
+               
               		<div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">       
               			<br>         
 		           			<button class="btn btn-primary" id="incluir">Incluir Agendamento</button>
 		           	</div>
-           		 	
+		         
 				<%if (!mensUsuario.equals("")){ %>
 					<strong><h4><%=mensUsuario %></h4></strong>
 				<%} %>            
@@ -418,7 +418,7 @@ function cancela_evento(evento) {
             
             <br>
             <div class="row">
-                <div id="divTab" class="bs-example"  style="height: 750px;  overflow-y: scroll;">
+                <div id="divTab" class="bs-example"  style="height: 750px;  overflow-y: scroll;">                	
                     <table id="maquinasTab" class="table  header-fixed  table-striped table-bordered table-hover ">
                        <thead class="header">
                        <% if (rs!=null) { 

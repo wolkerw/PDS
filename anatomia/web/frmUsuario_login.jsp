@@ -34,7 +34,7 @@
         objSIS_USUARIO = new HC_Lab_pessoa();
         objSIS_USUARIO.setInTransaction(true);
         objSIS_USUARIO.setConnexao(conn);
-            objSIS_USUARIO.limpaPropriedades();
+        objSIS_USUARIO.limpaPropriedades();
  		
 		session = request.getSession(true);
 	

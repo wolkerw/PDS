@@ -35,72 +35,25 @@ if(session.getAttribute("usuario")!=null){
    		lab_pessoa.setFlagsituacao(ativobloqueado);
    	
     lab_pessoa.lista();
-	
+    
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="java.sql.Connection"%>
-<html>
+<jsp:include page="header.jsp"/>
 
-<style>
-
-	.radius {
-		-moz-border-radius: 6px;
-		-webkit-border-radius: 6px;
-		border-radius: 6px;
-	}
-	
-	
-	.glowing-border {
-		border: 2px solid #dadada;
-		border-radius: 7px;
-	}
-	
-	.glowing-border:focus {
-		outline: none;
-		border-color: #9ecaed;
-		box-shadow: 0 0 10px #9ecaed;
-	}
-</style>
-
-
-
-
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista pessoas</title>
-
-        <script type="text/javascript" src="JavaScript/jquery-ui-1.10.4.custom/js/jquery-1.10.2.js"></script>
-        <script type="text/javascript" src="JavaScript/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.js"></script>
-        <script type="text/javascript" src="JavaScript/jquery-ui-1.10.4.custom/js/autoNumeric.1.9.22.js" charset="utf-8"></script>
-        <script type="text/javascript" src="JavaScript/jquery-ui-1.10.4.custom/js/jquery.mask.min.js"></script>
-        <script type="text/javascript" src="JavaScript/jquery-ui-1.10.4.custom/js/jquery.blockUI.js"></script>  
-        <script type="text/javascript" src="JavaScript/jquery-ui-1.10.4.custom/js/jquerydatepicker-ptbr.js"></script>
-        <script type="text/javascript" src="JavaScript/jquery-ui-1.10.4.custom/js/jquery.dataTables.js" charset="utf-8" language="javascript"></script>
-        <link rel="stylesheet" type="text/css" href="JavaScript/jquery-ui-1.10.4.custom/css/ui-blitz/jquery-ui.css" />
-        <link rel="stylesheet" type="text/css" href="JavaScript/jquery-ui-1.10.4.custom/css/jquery.dataTables.css" />
-        <script type="text/javascript" src="JavaScript/bootbox.min.js"></script>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="JavaScript/bootstrap-3.2.0-dist/css/bootstrap.min.css">
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="JavaScript/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="JavaScript/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-        <script src="JavaScript/jquery.modern-blink.js"></script>
-        
-            <script>
+<script>
         
 $(document).ready(function() {
 	
 	$("#filtrar").button().click(function(){
 		var form = document.getElementById('forme');
-		form.action="lsitapessoa.jsp";
+		form.action="listapessoa.jsp";
 		form.submit();
 	});
 	
 	
 	$(".sys_edit").button().click(function(){
 		var form = document.getElementById('forme');
-		form.action="telpessoanovo.jsp?cod_pessoa="+$(this).attr("codpess");
+		form.action="cadastro_pessoa.jsp?id="+$(this).attr("codpess");
 		form.submit();
 	});
 	
@@ -119,9 +72,6 @@ function isNumberKey(evt)
 }
 //-->
 </script>
-        
-    </head>
-    <body>
     
     <form method="post" id="forme">
         <br>     

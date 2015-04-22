@@ -1,4 +1,3 @@
-
 <%@page import="com.HC_Lab_agendamento"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="java.util.Map"%>

@@ -248,9 +248,9 @@ function carregaPresenca(seqagend){
 	    	$.unblockUI();
 	        alert( "Erro: " + msg.msg );
 	      }
-	   });
-	
-	
+});
+
+
 }
 
 function salvar(){
@@ -406,7 +406,7 @@ function isNumberKey(evt)
 		           </div>
             
             
-             <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">       
+              <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">       
               <br>         
 		           		   <strong>Modo relatório:</strong> &nbsp;<input title="Lista os registros somente apartir da data atual e em ordem crescente."   id="checkmodo" name="checkmodo" type="checkbox" >
 		           </div>

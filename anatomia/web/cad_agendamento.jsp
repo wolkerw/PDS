@@ -152,7 +152,9 @@ if(session.getAttribute("usuario")!=null){
         <!-- Latest compiled and minified JavaScript -->
         <script src="JavaScript/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
         <script src="JavaScript/jquery.modern-blink.js"></script>
-        
+
+<jsp:include page="header.jsp"/>
+
         <script>
         
 $(document).ready(function() {
@@ -467,12 +469,12 @@ function cancela_evento(evento) {
                         	<tr>
                         	    <td style="text-align: center; width: 5%" ></td>
                         	    <td style="text-align: center; width: 8%" ><%=rs.getString("hora")+":00" %></td>
-								<td style="text-align: center; width: 15%" ><%=rs.getInt("segunda") %></td>
-								<td style="text-align: center; width: 14%" ><%=rs.getInt("terca") %></td>
-								<td style="text-align: center; width: 15%" ><%=rs.getInt("quarta") %></td>
-								<td style="text-align: center; width: 15%" ><%=rs.getInt("quinta") %></td>
-								<td style="text-align: center; width: 14%" ><%=rs.getInt("sexta") %></td>
-								<td style="text-align: center; width: 15%" ><%=rs.getInt("sabado") %></td>
+								<td style="text-align: center; width: 15%" ><%=40-rs.getInt("segunda") %></td>
+								<td style="text-align: center; width: 14%" ><%=40-rs.getInt("terca") %></td>
+								<td style="text-align: center; width: 15%" ><%=40-rs.getInt("quarta") %></td>
+								<td style="text-align: center; width: 15%" ><%=40-rs.getInt("quinta") %></td>
+								<td style="text-align: center; width: 14%" ><%=40-rs.getInt("sexta") %></td>
+								<td style="text-align: center; width: 15%" ><%=40-rs.getInt("sabado") %></td>
 								<td style="text-align: center; width: 5%" ></td>
                         	</tr>
 

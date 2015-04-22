@@ -148,6 +148,8 @@ if(session.getAttribute("usuario")!=null){
         <script src="JavaScript/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
         <script src="JavaScript/jquery.modern-blink.js"></script>
         
+        <jsp:include page="header.jsp"/>
+        
         <script>
         
 $(document).ready(function() {

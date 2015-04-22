@@ -26,9 +26,6 @@
 	}
 %>
 
-<%@page import="java.sql.Connection"%>
-<jsp:include page="header.jsp"/>
-
 	<form name="form" method="post" action="">
 		<TABLE align="center" cellSpacing=0 cellPadding=0 width="35%" border=0>
 			<TR>

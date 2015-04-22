@@ -75,7 +75,7 @@
 
     if (!blnErro) {
 	              %>
-	              <meta http-equiv="refresh" content="0;URL=listapessoa.jsp">
+	              <meta http-equiv="refresh" content="0;URL=cad_agendamento.jsp">
 <%
     }else{%>
          		 <%=strErro%>

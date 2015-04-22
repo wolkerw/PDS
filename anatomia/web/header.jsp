@@ -29,11 +29,11 @@
     
         <div class="container">
     	<div class="btn-group" role="group" aria-label="...">
-		  <button type="button" class="btn btn-default"><a href="" title="Início">Início</a></button>
-		  <button type="button" class="btn btn-default"><a href="cad_agendamento.jsp" title="Agendar">Agendar</a></button>
-		  <button type="button" class="btn btn-default"><a href="cad_agendamento.jsp" title="Agendamentos">Agendamentos</a></button>
+		  <button type="button" class="btn btn-default"><a href="cad_agendamento.jsp" title="Início">Início</a></button>
+		  <button type="button" class="btn btn-default"><a href="lista_agendamentos.jsp" title="Agendamentos">Agendamentos</a></button>
 		  <button type="button" class="btn btn-default"><a href="cadastro_pessoa.jsp" title="Cadastrar usuário">Cadastrar usuário</a></button>
-		  <button type="button" class="btn btn-default"><a href="sair.jsp" title="Sair">Sair</a></button>
+		  <button type="button" class="btn btn-default"><a href="listapessoa.jsp" title="Listar Usuários">Listar Usuários</a></button>
+		  <button type="button" class="btn btn-default"><a href="index.jsp" title="Sair">Sair</a></button>
 		  <!-- <div class="btn-group" role="group">
 		    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 		      Dropdown

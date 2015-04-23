@@ -318,14 +318,6 @@ function cancela_evento(evento) {
         <div style="width: 85%" class="container bs-docs-container">
             
             <div class="row">
-		         
-		         	<%if(!session.getAttribute("tipo").toString().equalsIgnoreCase("AL")){%>
-		           <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">  
-		           
-		       				   <strong>Matricula:</strong><br> &nbsp;<input class="glowing-border" style="WIDTH: 80%"   onkeypress="return isNumberKey(event)"  id="num_matricula" name="num_matricula" type="text" maxlength="100">
-		           
-		           </div>
-		           <% }%>
 		  
 		           <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">                
 		           		   	  <strong>Data Inicial:</strong><br> &nbsp;<input class="data glowing-border" style="WIDTH: 80%" id="data_ini" name="data_ini" type="text" maxlength="100" value="<%=data_ini %>" onchange="return montaGrid()">
@@ -334,6 +326,32 @@ function cancela_evento(evento) {
             	   <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">                
 		           		   	  <strong>Data Final:</strong><br> &nbsp;<input class="data glowing-border" style="WIDTH: 80%" id="data_fim" name="data_fim" type="text" maxlength="100" value="<%=data_fim %>">
 		           </div>
+		           
+		           
+                    <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
+		                     
+		           		   	  <strong>Professor:</strong><br> &nbsp;
+		           		   	  <%HC_Lab_pessoa professor = new HC_Lab_pessoa();
+		           		   	   professor.setConnexao(conn);
+		           		   	   professor.setInTransaction(true);
+		           		   	   professor.setFlagtipo("PF");
+		           		   	   professor.setOrderBy("desc_nome");	
+		           		   	   
+		           		   	  if(session.getAttribute("tipo").toString().equalsIgnoreCase("PF")){
+		           			   	professor.setCodpessoa(Long.parseLong(session.getAttribute("usuario").toString()));
+		           		   	   }
+		           		   	   professor.lista();
+		           		   	  %>
+		           		   	  
+		           		   	  <select class="glowing-border" style="WIDTH: 80%" id="cod_professor" name="cod_professor" type="text" maxlength="100">  
+		           		   	  <option value="">Escolha o professor:</option>
+		           		   	  <%while(professor.next()){%>
+		           		   		  <option value="<%=professor.getRsCodpessoa() %>" <%=cod_professor.equals(Long.toString(professor.getRsCodpessoa()))?"selected='selected'":"" %>>  <%=professor.getRsDescnome() %></option>
+		           		   	  <% }%>
+		           		   	  </select>
+		           		   	  
+		           </div>
+		           
             		<input name="cod_usuario" type="hidden" value="<%=session.getAttribute("usuario").toString()%>">
              		<input name="data_grid" type="hidden" value="<%=data_grid%>"></input>
              		<input name="data_antes" type="hidden" value="<%=data_antes%>"></input>
@@ -383,30 +401,7 @@ function cancela_evento(evento) {
 		           		   	  
 		           </div>
             
-                    <div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">
-		                     
-		           		   	  <strong>Professor:</strong><br> &nbsp;
-		           		   	  <%HC_Lab_pessoa professor = new HC_Lab_pessoa();
-		           		   	   professor.setConnexao(conn);
-		           		   	   professor.setInTransaction(true);
-		           		   	   professor.setFlagtipo("PF");
-		           		   	   professor.setOrderBy("desc_nome");		           		   	   
-		           		   	   professor.lista();
-		           		   	  %>
-		           		   	  
-		           		   	  <select class="glowing-border" style="WIDTH: 80%" id="cod_professor" name="cod_professor" type="text" maxlength="100">  
-		           		   	  <option value="">Escolha o professor:</option>
-		           		   	  <%while(professor.next()){%>
-		           		   		  <option value="<%=professor.getRsCodpessoa() %>" <%=cod_professor.equals(Long.toString(professor.getRsCodpessoa()))?"selected='selected'":"" %>>  <%=professor.getRsDescnome() %></option>
-		           		   	  <% }%>
-		           		   	  </select>
-		           		   	  
-		           </div>
-		           	
-	           	
-            </div>
-            
-             <div class="row">
+		           	<div class="row">
                
               		<div class="col-xs-5 col-sm-5 col-md-3 col-lg-3">       
               			<br>         
@@ -417,6 +412,10 @@ function cancela_evento(evento) {
 					<strong><h4><%=mensUsuario %></h4></strong>
 				<%} %>            
             </div>
+	           	
+            </div>
+            
+             
             
             <br>
             <div class="row">

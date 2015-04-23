@@ -46,7 +46,6 @@ function alerta(var mensagem){
         conn = DBSettings.getConexao();
         
         cod_usuario = request.getParameter("cod_usuario") == null?"":request.getParameter("cod_usuario").trim();
-        matricula = request.getParameter("num_matricula") == null?"":request.getParameter("num_matricula").trim();
     	data_ini = request.getParameter("data_ini") == null?"":request.getParameter("data_ini").trim();
     	data_fim = request.getParameter("data_fim") == null?"":request.getParameter("data_fim").trim();
     	hora_ini = request.getParameter("hora_ini") == null?"":request.getParameter("hora_ini").trim();

@@ -38,6 +38,7 @@ if(session.getAttribute("usuario")!=null){
 	if(!cod_assunto.equalsIgnoreCase("")){
 		lab.setCodassunto(Integer.parseInt(cod_assunto));
 	}
+
 	
 	lab.setFiltroIntervalo("1=1");
 	Date dtIni = null;
@@ -84,6 +85,10 @@ if(session.getAttribute("usuario")!=null){
 	
 	if(session.getAttribute("tipo").toString().equalsIgnoreCase("AL")){
 		lab.setCodaluno(Long.parseLong(session.getAttribute("usuario").toString()));
+	};
+	
+	if(session.getAttribute("tipo").toString().equalsIgnoreCase("PF")){
+		lab.setCodprofessor(Long.parseLong(session.getAttribute("usuario").toString()));
 	};
 	
 	if(checkmodo.equalsIgnoreCase("S")){
@@ -486,6 +491,9 @@ function isNumberKey(evt)
 									<%=texto%>
 									</td>
 									<td align="right">
+								
+								
+								<%if(!session.getAttribute("tipo").toString().equalsIgnoreCase("AL")){%>
 									<div style="display: inline" align="right">
 										<button   seqagend="<%=lab.getRsSeqagendametno()%>" type="button" class="sys_presenca btn-xs btn-primary"  >
 										  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -493,6 +501,8 @@ function isNumberKey(evt)
 									</td>
 									
 									</div> 
+									
+								<%}%>
 								<%}%>
 								</tr>
 								</table>

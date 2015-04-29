@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/postgresql-8.1-405.jdbc3.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>

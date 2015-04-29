@@ -5,10 +5,12 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.HC_Lab_agendamento"%>
+<%@page import="com.funcoes.Email"%>
+<%@ page import="com.*"%>
+
 <html>
 <head>
 <title></title>
-<%@ page import="com.*" errorPage="erro.jsp"%>
 
 <meta HTTP-EQUIV=Expires CONTENT="Thu, 01 Jan 1970 00:00:00 GMT">
 <meta HTTP-EQUIV=Cache-Control content=no-store>
@@ -82,6 +84,22 @@ function alerta(var mensagem){
     }else{
     	mensUsuario = "Falha no Agendamento: " +strErro;
     }
+
+
+try {
+	HC_Lab_pessoa usuario = new HC_Lab_pessoa();
+	usuario.setConnexao(conn);
+	usuario.setInTransaction(true);
+	usuario.setCodpessoa(Long.parseLong(session.getAttribute("usuario").toString()));
+	usuario.lista();
+	
+	Email email = new Email();
+	email.enviaEmail("leo@dl.inf.br", "", "Agendamento realizado!", "O Agendamento do horário "+hora_ini+ " do dia "+data_ini+" até o dia "+data_fim+" foi realizado com sucesso!");
+}catch(Exception erro){
+	erro.printStackTrace();
+	mensUsuario += " O envio da confirmação por e-mail falhou!";
+}
+
 if(conn != null)
     conn.close();
 

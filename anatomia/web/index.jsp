@@ -96,6 +96,8 @@
 							</tr>
 						</table>
 					</form>
+					
+					<br/><br/><br/><a href="cadastro_pessoa.jsp" class="btn btn-default" OnClick="form.action='frmUsuario_login.jsp'; form.submit();">Cadastre-se</a>
 				</TD>
 			</TR>
 			<TR>

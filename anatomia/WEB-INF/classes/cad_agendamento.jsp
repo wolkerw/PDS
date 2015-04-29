@@ -353,7 +353,6 @@ function cancela_evento(evento) {
 		           </div>
 		           
             		<input name="cod_usuario" type="hidden" value="<%=session.getAttribute("usuario").toString()%>">
-            		<input name="tipo_usuario" type="hidden" value="<%=session.getAttribute("tipo").toString()%>">
              		<input name="data_grid" type="hidden" value="<%=data_grid%>"></input>
              		<input name="data_antes" type="hidden" value="<%=data_antes%>"></input>
              		<input name="data_depois" type="hidden" value="<%=data_depois%>"></input>
@@ -420,8 +419,7 @@ function cancela_evento(evento) {
             
             <br>
             <div class="row">
-                <div id="divTab" class="bs-example"  style="height: 750px;  overflow-y: scroll;">  
-                <h4><strong><center>Vagas Disponíveis:</center></strong></h4>              	
+                <div id="divTab" class="bs-example"  style="height: 750px;  overflow-y: scroll;">                	
                     <table id="maquinasTab" class="table  header-fixed  table-striped table-bordered table-hover ">
                        <thead class="header">
                        <% if (rs!=null) { 

@@ -27,21 +27,22 @@
     </head>
     <body>
     
-        <div class="container">
+    <div class="container">
+    <%if (session.getAttribute("usuario")!=null){%>
     	<div class="btn-group" role="group" aria-label="...">
-		  <button type="button" class="btn btn-default" onclick="   document.location.href='cad_agendamento.jsp';" ><a href="cad_agendamento.jsp" title="Início">Agendar</a></button>
-		  <button type="button" class="btn btn-default" onclick="   document.location.href='lista_agendamentos.jsp';" ><a href="lista_agendamentos.jsp" title="Agendamentos">Meus Agendamentos</a></button>
-		  	<%if(session.getAttribute("tipo").toString().equalsIgnoreCase("AD")){%>
-		  		<button type="button" class="btn btn-default" onclick="   document.location.href='listapessoa.jsp';"  ><a href="listapessoa.jsp" title="Listar Usuários">Listar Usuários</a></button>
+		  <button type="button" class="btn btn-default" onclick="document.location.href='cad_agendamento.jsp';"><a href="cad_agendamento.jsp" title="Início">Agendar</a></button>
+		  <button type="button" class="btn btn-default" onclick="document.location.href='lista_agendamentos.jsp';"><a href="lista_agendamentos.jsp" title="Agendamentos">Meus Agendamentos</a></button>
+		  	<%if(session.getAttribute("usuario")!=null && session.getAttribute("tipo").toString().equalsIgnoreCase("AD")){%>
+		  		<button type="button" class="btn btn-default" onclick="document.location.href='listapessoa.jsp';"><a href="listapessoa.jsp" title="Listar Usuários">Listar Usuários</a></button>
 		  	<%}%>
-		  	<%if(session.getAttribute("tipo").toString().equalsIgnoreCase("AD")){%>
-		  		<button type="button" class="btn btn-default" onclick="   document.location.href='cadastro_pessoa.jsp';"  ><a href="cadastro_pessoa.jsp" title="Cadastrar usuário">Cadastrar usuario</a></button>
-		  	<%}else{%>
-		  		<button type="button" class="btn btn-default" onclick="   document.location.href='cadastro_pessoa.jsp';"  ><a href="cadastro_pessoa.jsp" title="Cadastrar usuário">Meus dados</a></button>
+		  	<%if(session.getAttribute("usuario")!=null && session.getAttribute("tipo").toString().equalsIgnoreCase("AD")){%>
+		  		<button type="button" class="btn btn-default" onclick="document.location.href='cadastro_pessoa.jsp';"><a href="cadastro_pessoa.jsp" title="Cadastrar usuário">Cadastrar usuario</a></button>
+		  	<%}else if (session.getAttribute("usuario")!=null){%>
+		  		<button type="button" class="btn btn-default" onclick="document.location.href='cadastro_pessoa.jsp';"><a href="cadastro_pessoa.jsp?id=<%=session.getAttribute("usuario")%>" title="Cadastrar usuário">Meus dados</a></button>
 		  	<%}%>
 
 		  
-		  <button type="button" class="btn btn-default" onclick="   document.location.href='index.jsp';"  ><a href="index.jsp" title="Sair">Sair</a></button>
+		  <button type="button" class="btn btn-default" onclick="document.location.href='index.jsp';"><a href="index.jsp" title="Sair">Sair</a></button>
 		  <!-- <div class="btn-group" role="group">
 		    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 		      Dropdown
@@ -53,4 +54,8 @@
 		    </ul>
 		  </div>
 		</div> -->
+	<% } else { %>
+		<button type="button" class="btn btn-default" onclick="document.location.href='index.jsp';"><a href="index.jsp" title="Login">Login</a></button>
+	<% } %>
 	</div> 
+	<div style="clear: both"></div><br/>

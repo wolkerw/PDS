@@ -20,7 +20,9 @@ public class HC_Lab_agendamento extends Lab_agendamento{
     }
     
     private static final int qtdidadevagasmax = 7; 
-    
+    private static Connection connglob = null;
+    private static long codaluno = -1;
+    private static Date datainiglob = null;
     
     public static void main(String[] args) {
 
@@ -346,23 +348,51 @@ public class HC_Lab_agendamento extends Lab_agendamento{
     			lab.lista();    			
     			
     			while (lab.next()){
+    				
+    				
+    				
+    				
     				lab.setSeqagendametno(lab.getRsSeqagendametno());
     				lab.setFlagstaus("C");
     				lab.update();
-    				
+    
+    				connglob = conn;
+    			     codaluno = lab.getRsCodaluno();
+    			    datainiglob = dtIni;
+    			    
     				// ----
-    				HC_Lab_pessoa usuario = new HC_Lab_pessoa();
-    				usuario.setConnexao(conn);
-    				usuario.setInTransaction(true);
-    				usuario.setCodpessoa(lab.getRsCodaluno());
-    				usuario.lista();
-    				usuario.next();
     				
-    				Email email = new Email();
-    				email.enviaEmail(usuario.getRsDescemail(), "", "Agendamento Cancelado!", "O Agendamento do horário "+new SimpleDateFormat("HH:mm").format(dtIni)+ 
-    																" do dia "+new SimpleDateFormat("dd/MM/yyyy").format(dtIni)+" foi cancelado pois um professor reservou o laboratório!");
+    				new Thread(new Runnable() {
+    				    public void run() {
     				
-    				lab.next();
+    				    	try {
+						
+    				    		HC_Lab_pessoa usuario = new HC_Lab_pessoa();
+        	    				usuario.setConnexao(connglob);
+        	    				usuario.setInTransaction(true);
+        	    				usuario.setCodpessoa(codaluno);
+        	    				usuario.lista();
+        	    				usuario.next();
+        	    		
+        	    				Email email = new Email();
+        	    				email.enviaEmail(usuario.getRsDescemail(), "", "Agendamento Cancelado!", "O Agendamento do horário "+new SimpleDateFormat("HH:mm").format(datainiglob)+ 
+        	    																" do dia "+new SimpleDateFormat("dd/MM/yyyy").format(datainiglob)+" foi cancelado pois um professor reservou o laboratório!");
+        	    		
+    				    		
+							} catch (Exception e) {
+								
+								e.printStackTrace();
+								// TODO: handle exception
+							}
+    				    		
+    				    	
+    				    	//Do whatever
+    				    }
+    				}).start();
+    				
+    				
+    				
+    				
     			}
     			
     		}

@@ -57,7 +57,7 @@ function alerta(var mensagem){
     	hora_ini = request.getParameter("hora_ini") == null?"":request.getParameter("hora_ini").trim();
     	cod_assunto = request.getParameter("cod_assunto") == null?"":request.getParameter("cod_assunto").trim();
     	cod_professor = request.getParameter("cod_professor") == null?"":request.getParameter("cod_professor").trim();
-
+        
         HC_Lab_agendamento objAgendamento = new HC_Lab_agendamento();
         String resultado = objAgendamento.insereAgendamento(Long.parseLong(cod_usuario), 
         							     Long.parseLong(cod_professor), 
@@ -82,21 +82,30 @@ function alerta(var mensagem){
     if (!blnErro) {
    		mensUsuario = "Agendamento realizado!";
    		
-   		try {
-   			HC_Lab_pessoa usuario = new HC_Lab_pessoa();
-   			usuario.setConnexao(conn);
-   			usuario.setInTransaction(true);
-   			usuario.setCodpessoa(Integer.parseInt((session.getAttribute("usuario").toString())));
-   			usuario.lista();
-   			usuario.next();
-   			
-   			Email email = new Email();
-   			email.enviaEmail(usuario.getRsDescemail(), "", "Agendamento realizado!", "O Agendamento do horário "+hora_ini+ ":00 do dia "+data_ini+" até o dia "+data_fim+" foi realizado com sucesso!");
-   		}catch(Exception erro){
-   			erro.printStackTrace();
-   			mensUsuario += " O envio da confirmação por e-mail falhou!";
-   		}
-   		
+	    	try {
+		
+	    		HC_Lab_pessoa usuario = new HC_Lab_pessoa();
+	   			usuario.setConnexao(conn);
+	   			usuario.setInTransaction(true);
+	   			usuario.setCodpessoa(Integer.parseInt((session.getAttribute("usuario").toString())));
+	   			usuario.lista();
+	   			usuario.next();
+	   			
+	   			EmailAssync eAss = new EmailAssync();
+	   			eAss.setDestino(usuario.getRsDescemail());
+	   			eAss.setTitulo("Agendamento realizado!");
+	   			eAss.setMensagem("O Agendamento do horario "+hora_ini+ ":00 do dia "+data_ini+" ate o dia "+data_fim+" foi realizado com sucesso!");
+	   			eAss.setConn(conn);
+	   			eAss.enviaEmailAssync();
+	   				    		
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				// TODO: handle exception
+			}
+		    		
+		    	
+  		
     }else{
     	mensUsuario = "Falha no Agendamento: " +strErro;
     }

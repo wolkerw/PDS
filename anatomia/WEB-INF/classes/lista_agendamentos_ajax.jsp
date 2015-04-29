@@ -53,22 +53,30 @@
 				agendamento.update();
 			};
 		
-			try{
-				// ----
+	    	try {
+	    		
 				HC_Lab_pessoa usuario = new HC_Lab_pessoa();
 				usuario.setConnexao(conn);
 				usuario.setInTransaction(true);
 				usuario.setCodpessoa(agendamento.getRsCodaluno());
 				usuario.lista();
 				usuario.next();
+	   			
+	   			EmailAssync eAss = new EmailAssync();
+	   			eAss.setDestino(usuario.getRsDescemail());
+	   			eAss.setTitulo("Agendamento cancelado!");
+	   			eAss.setMensagem("O Agendamento do horario "+new SimpleDateFormat("HH:mm").format(agendamento.getRsDataini().getTime())+ 
+						         " do dia "+new SimpleDateFormat("dd/MM/yyyy").format(agendamento.getRsDataini().getTime())+" foi cancelado conforme sua solicitacao!");
+	   			eAss.setConn(conn);
+	   			eAss.enviaEmailAssync();
+	   				    		
+			} catch (Exception e) {
 				
-				Email email = new Email();
-				email.enviaEmail(usuario.getRsDescemail(), "", "Agendamento Cancelado!", "O Agendamento do horário "+new SimpleDateFormat("HH:mm").format(agendamento.getRsDataini().getTime())+ 
-																" do dia "+new SimpleDateFormat("dd/MM/yyyy").format(agendamento.getRsDataini().getTime())+" foi cancelado conforme sua solicitação!");
-			}catch (Exception erro){
-				erro.printStackTrace();
+				e.printStackTrace();
+				// TODO: handle exception
 			}
 			
+		
 			objRetorno.put("ok", "ok");
 			out.print(objRetorno.toJSONString());
 	} else	if (cmd.equalsIgnoreCase("carregapresenca")) { 

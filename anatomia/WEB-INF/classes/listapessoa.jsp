@@ -150,7 +150,7 @@ function isNumberKey(evt)
                                 <th style="text-align: center; width: 10%">Num telefone</th>
                                 <th style="text-align: center; width: 15%">Email</th>
                                 <th style="text-align: center; width: 15%">Situação</th>
-                                   <th style="text-align: center; width: 15%"></th>
+                                <% if(session.getAttribute("tipo").toString().equalsIgnoreCase("AD")) { %><th style="text-align: center; width: 15%"></th><% } %>
                                 
                             </tr>
                         </thead>
@@ -177,7 +177,7 @@ function isNumberKey(evt)
 								<td><%=lab_pessoa.getRsNumtelefone()%></td>
 								<td><%=lab_pessoa.getRsDescemail()%></td>
 								<td><%=situacao%></td>
-								<td><button class="sys_edit btn btn-primary" codpess="<%=lab_pessoa.getRsCodpessoa()%>" >Editar</button></td>                        	
+								<% if(session.getAttribute("tipo").toString().equalsIgnoreCase("AD")) { %><td><button class="sys_edit btn btn-primary" codpess="<%=lab_pessoa.getRsCodpessoa()%>" >Editar</button></td><% } %>                        	
                         	</tr>
 
                         <%}

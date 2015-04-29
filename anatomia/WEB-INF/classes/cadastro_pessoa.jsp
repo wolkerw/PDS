@@ -3,33 +3,77 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.DBSettings"%>
 <%@page import="com.HC_Lab_pessoa"%>
+<%@page import="java.sql.ResultSet"%>
 <%@ page pageEncoding="UTF-8"%>
 <%@page contentType="text/html; charset=UTF-8"%>
 <%//codeGenVersion 2.0.72
 
-
 Connection conn = DBSettings.getConexao();
-if(session.getAttribute("usuario")!=null){
+//if(session.getAttribute("usuario")!=null){
+	
+	boolean editando = false;
+	int codPessoa;
+	String editandoValue = "nao";
+	if (request.getParameter("id") != null) {
+		codPessoa = Integer.parseInt(request.getParameter("id"));
+		editandoValue = "sim";
+	} else codPessoa = 0/*Integer.parseInt(session.getAttribute("usuario").toString())*/;
+	/*if (session.getAttribute("usuario")!=null /*&& session.getAttribute("tipo").toString().equalsIgnoreCase("AD")/* && request.getParameter("cod_pessoa")!=null*//*) {
+		editando = true;
+	}*/
 	
 	HC_Lab_pessoa objSIS_USUARIO = new HC_Lab_pessoa();
 	objSIS_USUARIO = new HC_Lab_pessoa();
     objSIS_USUARIO.setInTransaction(true);
     objSIS_USUARIO.setConnexao(conn);
     objSIS_USUARIO.limpaPropriedades();
+    
+    // Pega os dados do usuário
+    //if (editando) {
+    
+   	int matriculaOriginal = 0, cursoOriginal = 0;
+   	long telefoneOriginal = 0;
+   	String nomeOriginal = "", senhaOriginal = "", emailOriginal = "", tipoOriginal = "", situacaoOriginal = "";
+    	
+    if (codPessoa != 0) {
+    	editando = true;
+    	
+    	ResultSet rs = null;
+    	rs = objSIS_USUARIO.carregaDadosPessoa(codPessoa);
+    	
+    	while((rs!=null) && (rs.next())){
+    		matriculaOriginal = Integer.parseInt(rs.getString("num_matricula"));
+    		cursoOriginal = Integer.parseInt(rs.getString("cod_curso"));
+    		telefoneOriginal = Long.parseLong(rs.getString("num_telefone"));
+    		emailOriginal = rs.getString("desc_email").toString();
+    		tipoOriginal = rs.getString("flag_tipo").toString();
+    		nomeOriginal = rs.getString("desc_nome").toString();
+    		senhaOriginal = rs.getString("desc_senha").toString();
+    		situacaoOriginal = rs.getString("flag_situacao").toString();
+    	}
+    	
+    	//String matricula = session.getAttribute("cod_matricula").toString();
 
-	System.out.println("teste1 ");
+    	/*System.out.println("codUsuario: " + codPessoa);
+    	System.out.println("matriculaOriginal: " + matriculaOriginal);
+    	System.out.println("cursoOriginal: " + cursoOriginal);*/
+    }
+
+	//System.out.println("teste1");
 	
-	if (request.getParameter("txtLG_NOME")!=null){
+	/*if (request.getParameter("txtLG_NOME")!=null){
+		String nome = request.getParameter("txtLG_NOME");
+				
 		System.out.println("not null nome");
-       	if (request.getParameter("txtLG_NOME").compareToIgnoreCase("")!=0){
+       	if (nome.compareToIgnoreCase("")!=0){
        		System.out.println("not null nome 2");
        	  	try {
-            	objSIS_USUARIO.setDescnome("txtLG_NOME");
+            	objSIS_USUARIO.setDescnome(nome);
        	  	} catch(Exception e){
            		throw new Exception("O nome deve ser preenchido corretamente.");
             }
        	}
-   }
+   }*/
 	
 	/*HC_Lab_agendamento lab = new HC_Lab_agendamento();
 	lab.setInTransaction(true);
@@ -172,37 +216,53 @@ function cancelaCadastroPessoa(seqagend){
                     <table border="0" cellpadding="0" cellspacing="0" width="310">
                       	<tr>
                       		<td>
+                      			<input id="editando" value="<%= editandoValue %>" type="hidden" class="form-control campo" name="editando">
                       			<div class="form-group">
 									<label for="txtLG_TIPO">Tipo de cadastro:</label>
-									<select  class="glowing-border form-control campo" id="txtcurso" name="txtcurso" type="text" maxlength="100" >
-										<option value="AL">Aluno</option>
-										<%if(!session.getAttribute("tipo").toString().equalsIgnoreCase("AL")){%>
-											<option value="PF">Professor</option>
+									<select  class="glowing-border form-control campo" id="txtLG_TIPO" name="txtLG_TIPO" type="text" maxlength="100" >
+										<option value="AL" <%=tipoOriginal == "AL" ? "selected=\"selected\"" : "" %>>Aluno</option>
+										<%if(session.getAttribute("usuario")!=null && !session.getAttribute("tipo").toString().equalsIgnoreCase("AL")){%>
+											<option value="PF" <%=tipoOriginal == "PF" ? "selected=\"selected\"" : "" %>>Professor</option>
 										<%}%>
-										<%if(session.getAttribute("tipo").toString().equalsIgnoreCase("AD")){%>
-											<option value="AD">Administrador</option>
+										<%if(session.getAttribute("usuario")!=null && session.getAttribute("tipo").toString().equalsIgnoreCase("AD")){%>
+											<option value="AD" <%=tipoOriginal == "AD" ? "selected=\"selected\"" : "" %>>Administrador</option>
 										<%}%>
 									</select>
 								</div>
                       			<div class="form-group">
 									<label for="txtLG_NOME">Nome:</label>
-									<input id="txtLG_NOME" type="text" class="form-control campo" placeholder="Digite o nome" name="txtLG_NOME">
+									<input id="txtLG_NOME" value="<%= nomeOriginal %>" type="text" class="form-control campo" placeholder="Digite o nome" name="txtLG_NOME">
 								</div>
-                      			<div class="form-group">
-									<label for="txtLG_MATRICULA">Matrícula:</label>
-									<input id="txtLG_MATRICULA" type="text" class="form-control campo" placeholder="Digite a matrícula" name="txtLG_MATRICULA">
-								</div>
+								<%if (!editando) {
+									%><div class="form-group">
+										<label for="txtLG_MATRICULA">Matrícula:</label>
+										<input id="txtLG_MATRICULA" value="" type="text" class="form-control campo" placeholder="Digite a matrícula" name="txtLG_MATRICULA">
+									</div><%
+								} else {
+									%><input id="txtLG_MATRICULA" value="<%= matriculaOriginal %>" type="hidden" class="form-control campo" name="txtLG_MATRICULA"><%
+								} %>
+								
+								<%if (session.getAttribute("usuario")!=null && session.getAttribute("tipo").toString().equalsIgnoreCase("AD")) {
+									%><div class="form-group">
+										<label for="txtLG_SITUACAO">Situação:</label>
+										<select  class="glowing-border form-control campo" id="txtLG_SITUACAO" name="txtLG_SITUACAO" type="text" maxlength="100" >
+											<option value="L" <%=situacaoOriginal == "L" ? "selected=\"selected\"" : "" %>>Liberado</option>
+											<option value="B" <%=situacaoOriginal == "B" ? "selected=\"selected\"" : "" %>>Bloqueado</option>
+										</select>
+									</div><%
+								}%>
+								
                       			<div class="form-group">
 									<label for="txtLG_EMAIL">E-mail:</label>
-									<input id="txtLG_EMAIL" type="text" class="form-control campo" placeholder="Digite o e-mail" name="txtLG_EMAIL">
+									<input id="txtLG_EMAIL" value="<%= emailOriginal %>" type="text" class="form-control campo" placeholder="Digite o e-mail" name="txtLG_EMAIL">
 								</div>
                       			<div class="form-group">
 									<label for="txtLG_SENHA">Senha:</label>
-									<input id="txtLG_SENHA" type="password" class="form-control campo" placeholder="" name="txtLG_SENHA">
+									<input id="txtLG_SENHA" value="<%= senhaOriginal %>" value="" type="password" class="form-control campo" placeholder="" name="txtLG_SENHA">
 								</div>
                       			<div class="form-group">
 									<label for="txtLG_CURSO">Curso:</label>
-									<select  class="glowing-border form-control campo" id="txtcurso" name="txtcurso" type="text" maxlength="100" >  
+									<select  class="glowing-border form-control campo" id="txtLG_CURSO" name="txtLG_CURSO" type="text" maxlength="100" >  
 				           		   	  	<option value="">Todos</option>
 				           		   	  	<%HC_Lab_curso curso = new HC_Lab_curso();
 						           		 curso.setConnexao(conn);
@@ -211,13 +271,13 @@ function cancelaCadastroPessoa(seqagend){
 						           		curso.lista();
 						           		
 				           		   	  	while(curso.next()){%>
-				           		   		  	<option value="<%=curso.getRsCodcurso()%>" >  <%=curso.getRsDesccurso() %></option>
+				           		   		  	<option value="<%=curso.getRsCodcurso()%>" <%=cursoOriginal == curso.getRsCodcurso() ? "selected=\"selected\"" : "" %>>  <%=curso.getRsDesccurso() %></option>
 				           		   	  	<% }%>
 				           		   	</select>
 								</div>
                       			<div class="form-group">
 									<label for="txtLG_TELEFONE">Telefone:</label>
-									<input id="txtLG_TELEFONE" type="text" class="form-control campo" placeholder="Digite o telefone" name="txtLG_TELEFONE">
+									<input id="txtLG_TELEFONE" value="<%= telefoneOriginal %>" type="text" class="form-control campo" placeholder="Digite o telefone" name="txtLG_TELEFONE">
 								</div>
                       			<!-- <div class="form-group">
 									<label for="txtLG_SITUACAO">Situação:</label>
@@ -275,6 +335,6 @@ function cancelaCadastroPessoa(seqagend){
 </body>        
 </html>
 
-<%}else{%>
-	Você não está logado	
-<%} %>
+<%//}else{
+//	Você não está logado	
+//} %>

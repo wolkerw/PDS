@@ -58,9 +58,16 @@
         objSIS_USUARIO.lista();
         
         if(objSIS_USUARIO.next()){
+        	
+        	
         	objSIS_USUARIO.mapGetRsToSet(objSIS_USUARIO,objSIS_USUARIO);
-          session.setAttribute("tipo",objSIS_USUARIO.getRsFlagtipo());
+        	if(objSIS_USUARIO.getRsFlagsituacao() != null && objSIS_USUARIO.getRsFlagsituacao().equalsIgnoreCase("B")){
+        		throw new Exception("O usuário está bloqueado.");
+        	};
+        	
+        	session.setAttribute("tipo",objSIS_USUARIO.getRsFlagtipo());
       	  session.setAttribute("usuario",new Long(objSIS_USUARIO.getRsCodpessoa()));
+      	  
           session.setMaxInactiveInterval(1800);
           
         }else{

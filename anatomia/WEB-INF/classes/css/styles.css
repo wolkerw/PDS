@@ -1,0 +1,55 @@
+.radius {
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+
+.glowing-border {
+	border: 2px solid #dadada;
+	border-radius: 7px;
+}
+
+.glowing-border:focus {
+	outline: none;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
+
+.radius {
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+
+.glowing-border {
+	border: 2px solid #dadada;
+	border-radius: 7px;
+}
+
+.glowing-border:focus {
+	outline: none;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
+
+
+.glowing-border {
+	border: 2px solid #dadada;
+	border-radius: 7px;
+}
+
+.glowing-border:focus {
+	outline: none;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
+
+.style1 {
+	color: #FFFFFF
+}
+
+.form-control.campo {
+	width: 300px;
+}

@@ -2,6 +2,8 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.HC_Lab_agendamento"%>
 <html>
 <head>
@@ -35,6 +37,7 @@ function alerta(var mensagem){
     Connection conn = null;
     long ultemplog = 0;
     String cod_usuario = null;
+    String tipo_usuario = null;
     String matricula = null; 
     String data_ini = null;
     String data_fim = null; 
@@ -46,17 +49,20 @@ function alerta(var mensagem){
         conn = DBSettings.getConexao();
         
         cod_usuario = request.getParameter("cod_usuario") == null?"":request.getParameter("cod_usuario").trim();
+        tipo_usuario = request.getParameter("tipo_usuario") == null?"":request.getParameter("tipo_usuario").trim();
     	data_ini = request.getParameter("data_ini") == null?"":request.getParameter("data_ini").trim();
     	data_fim = request.getParameter("data_fim") == null?"":request.getParameter("data_fim").trim();
     	hora_ini = request.getParameter("hora_ini") == null?"":request.getParameter("hora_ini").trim();
     	cod_assunto = request.getParameter("cod_assunto") == null?"":request.getParameter("cod_assunto").trim();
     	cod_professor = request.getParameter("cod_professor") == null?"":request.getParameter("cod_professor").trim();
-        
+
         HC_Lab_agendamento objAgendamento = new HC_Lab_agendamento();
         String resultado = objAgendamento.insereAgendamento(Long.parseLong(cod_usuario), 
         							     Long.parseLong(cod_professor), 
         							     Long.parseLong(cod_assunto), 
-        							     data_ini, data_fim, Integer.parseInt(hora_ini));
+        							     data_ini, data_fim, Integer.parseInt(hora_ini),
+        							     tipo_usuario);
+        
         
         if (!resultado.equals("")){
         	blnErro = true;

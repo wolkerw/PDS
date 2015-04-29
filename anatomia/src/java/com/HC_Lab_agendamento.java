@@ -3,6 +3,7 @@ package com;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -119,6 +120,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 7 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -126,6 +128,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 8 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -133,6 +136,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 9 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -140,6 +144,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 10 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -147,6 +152,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 11 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -154,6 +160,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 12 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -161,6 +168,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 13 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -168,6 +176,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 14 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -175,6 +184,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 15 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -182,6 +192,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 16 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -189,6 +200,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 17 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -196,6 +208,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 18 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -203,6 +216,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 19 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -210,6 +224,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 20 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -217,6 +232,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 21 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini "
         		+ "                                                        UNION ALL "
         		+ "                                                        SELECT   ( extract(hour FROM data_ini)) AS hora, "
@@ -224,6 +240,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
         		+ "                                                                 data_ini "
         		+ "                                                        FROM     lab_agendamento "
         		+ "                                                        WHERE    extract(hour FROM data_ini) = 22 "
+        		+ "                                                          AND    (flag_staus is null OR flag_staus!='C') "
         		+ "                                                        GROUP BY data_ini ) AS tab23 "
         		+ "                                     ON        date_trunc('day',tab23.data_ini) = datas.start "
         		+ "                                     AND       datas.hora = tab23.hora ) AS horarios "
@@ -261,25 +278,28 @@ public class HC_Lab_agendamento extends Lab_agendamento{
     
     
     
-    public static String insereAgendamento(long codpessoa, long codprof, long codassunto, String dataini, String datafim, int horaini) throws Exception{
+    public static String insereAgendamento(long codpessoa, long codprof, long codassunto, String dataini, String datafim, int horaini, String tipousuario) throws Exception{
     	Connection conn = null;
     try {
     	conn = DBSettings.getConexao();
     	conn.setAutoCommit(false);
     	
-    	
+	   	if (tipousuario.equals("PF")){
+	   		
+	   	}
+   	
 		HC_Lab_agendamento agendamento = new HC_Lab_agendamento();
 		agendamento.setConnexao(conn);
 		agendamento.setInTransaction(true);
     	
     	Date dat_ini = new SimpleDateFormat("dd/MM/yyyy").parse(dataini.trim());
     	Date dat_fim = new SimpleDateFormat("dd/MM/yyyy").parse(datafim.trim());
-    	Date dataaux = null;
+    	Date dataaux = null;    	
+    	DecimalFormat df = new DecimalFormat("00");
     	
     	ResultSet rs = null;
     	
     	while(dat_ini.compareTo(dat_fim)<=0){
-    		
     		
     		dataaux = dat_ini;
     		GregorianCalendar auxini = new GregorianCalendar();
@@ -289,40 +309,87 @@ public class HC_Lab_agendamento extends Lab_agendamento{
     		GregorianCalendar auxfim = new GregorianCalendar();
     		auxfim.setTime(dataaux);
     		auxfim.add(Calendar.HOUR, horaini+1);
-    		
-    		
-    		rs = conn.createStatement().executeQuery("select count(seq_agendametno) as reservas from lab_agendamento where data_ini = '"+new SimpleDateFormat("yyyyMMdd HH:00:00").format(auxini.getTime())+"'");
-    		if(rs.next()){
-    			if(rs.getInt("reservas")>=qtdidadevagasmax){
-    				throw new Exception("Erro. Horário  " + new SimpleDateFormat("dd/MM/yyyy HH:00:00").format(auxini.getTime() + " está com todas vagas ocupadas"));
-    			}
-    		}
-    		
-    		rs = conn.createStatement().executeQuery("select 1 from lab_agendamento where data_ini = '"+new SimpleDateFormat("yyyyMMdd HH:00:00").format(auxini.getTime())+"' and cod_aluno = " + codpessoa);
-    		
-    		if(rs.next()){
-    				throw new Exception("Erro. O aluno ja possui agendamento no horario  " + new SimpleDateFormat("dd/MM/yyyy HH:00:00").format(auxini.getTime()) + ".");
-    		}
-    		
-    		auxini.add(Calendar.HOUR, -1);
-    		rs = conn.createStatement().executeQuery("select 1 from lab_agendamento where data_ini = '"+new SimpleDateFormat("yyyyMMdd HH:00:00").format(auxini.getTime())+"' and cod_aluno = " + codpessoa);
-    		if(rs.next()){
-    				throw new Exception("Erro. O aluno já possui agendamento no horario anterior  " + new SimpleDateFormat("dd/MM/yyyy HH:00:00").format(auxini.getTime()) + ".");
-    		}
-    		auxini.add(Calendar.HOUR, 1);
 
+
+    		if (tipousuario.equals("PF")){
+    			HC_Lab_agendamento lab = new HC_Lab_agendamento();
+    			lab.setInTransaction(true);
+    			lab.setConnexao(conn);
+    			lab.setOrderBy("data_ini desc");
+    			
+    			lab.setFiltroIntervalo("1=1");
+    			Date dtIni = null;
+    			Date dtFim = null;
+    			boolean errodata = false;
+    			try{
+    					dtIni = auxini.getTime();
+    			}catch(Exception e){
+    				errodata = true;
+    			}
+    			try{
+    					dtFim = auxfim.getTime();
+    			}catch(Exception e){
+    				errodata = true;
+    			}
+    			
+   				lab.setFiltroIntervalo(lab.getFiltroIntervalo() + " and (flag_staus is null or flag_staus != 'C') ");
+
+    			
+    			if(!errodata)
+    				lab.setFiltroIntervalo(lab.getFiltroIntervalo() + "  AND Lab_agendamento.data_ini = '"+ new SimpleDateFormat("yyyyMMdd HH:mm:ss").format(dtIni) +"' ");
+    			
+    			System.out.println(lab.getFiltroIntervalo());
+    			
+    			lab.setTop("100000");
+    			lab.lista();    			
+    			
+    			while (lab.next()){
+    				lab.setSeqagendametno(lab.getRsSeqagendametno());
+    				lab.setFlagstaus("C");
+    				lab.update();
+    				lab.next();
+    			}
+    			
+    		}
     		
+    		if (!tipousuario.equals("PF")){ 
+	    		rs = conn.createStatement().executeQuery("select count(seq_agendametno) as reservas from lab_agendamento where data_ini = '"+new SimpleDateFormat("yyyyMMdd HH:00:00").format(auxini.getTime())+"'");
+	    		if(rs.next()){
+	    			if(rs.getInt("reservas")>=qtdidadevagasmax){
+	    				throw new Exception("Erro. Horário  " + new SimpleDateFormat("dd/MM/yyyy HH:00:00").format(auxini.getTime() + " está com todas vagas ocupadas"));
+	    			}
+	    		}
+	    		
+	    		rs = conn.createStatement().executeQuery("select 1 from lab_agendamento where data_ini = '"+new SimpleDateFormat("yyyyMMdd HH:00:00").format(auxini.getTime())+"' and cod_aluno = " + codpessoa);
+	    		
+	    		if(rs.next()){
+	    				throw new Exception("Erro. O aluno ja possui agendamento no horario  " + new SimpleDateFormat("dd/MM/yyyy HH:00:00").format(auxini.getTime()) + ".");
+	    		}
+	    		
+	    		auxini.add(Calendar.HOUR, -1);
+	    		rs = conn.createStatement().executeQuery("select 1 from lab_agendamento where data_ini = '"+new SimpleDateFormat("yyyyMMdd HH:00:00").format(auxini.getTime())+"' and cod_aluno = " + codpessoa);
+	    		if(rs.next()){
+	    				throw new Exception("Erro. O aluno já possui agendamento no horario anterior  " + new SimpleDateFormat("dd/MM/yyyy HH:00:00").format(auxini.getTime()) + ".");
+	    		}
+	    		auxini.add(Calendar.HOUR, 1);
+    		}    		
     		
     		agendamento.limpaPropriedades();
     		agendamento.limpaPropriedadesRS();
     	
     		if(auxini.get(Calendar.DAY_OF_WEEK)!=1){
-			    		agendamento.setCodaluno(codpessoa);
-			    		agendamento.setCodprofessor(codprof);
-			    		agendamento.setCodassunto(codassunto);
-			    		agendamento.setDataini(auxini.getTime());
-			    		agendamento.setDatafim(auxfim.getTime());
+    			agendamento.setCodaluno(codpessoa);
+	    		agendamento.setCodprofessor(codprof);
+	    		agendamento.setCodassunto(codassunto);
+	    		agendamento.setDataini(auxini.getTime());
+	    		agendamento.setDatafim(auxfim.getTime());
+    			if (!tipousuario.equals("PF")){			    		
 			    		agendamento.insert();
+    			} else {
+    				for(int i=0;i<40;i++){
+    					agendamento.insert();
+    				}
+    			}
     		}
     		
     		GregorianCalendar aumenta1dia = new GregorianCalendar();

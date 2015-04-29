@@ -353,6 +353,7 @@ function cancela_evento(evento) {
 		           </div>
 		           
             		<input name="cod_usuario" type="hidden" value="<%=session.getAttribute("usuario").toString()%>">
+            		<input name="tipo_usuario" type="hidden" value="<%=session.getAttribute("tipo").toString()%>">
              		<input name="data_grid" type="hidden" value="<%=data_grid%>"></input>
              		<input name="data_antes" type="hidden" value="<%=data_antes%>"></input>
              		<input name="data_depois" type="hidden" value="<%=data_depois%>"></input>

@@ -81,24 +81,28 @@ function alerta(var mensagem){
     
     if (!blnErro) {
    		mensUsuario = "Agendamento realizado!";
+   		
+   		try {
+   			HC_Lab_pessoa usuario = new HC_Lab_pessoa();
+   			usuario.setConnexao(conn);
+   			usuario.setInTransaction(true);
+   			usuario.setCodpessoa(Integer.parseInt((session.getAttribute("usuario").toString())));
+   			usuario.lista();
+   			usuario.next();
+   			
+   			Email email = new Email();
+   			email.enviaEmail(usuario.getRsDescemail(), "", "Agendamento realizado!", "O Agendamento do horário "+hora_ini+ ":00 do dia "+data_ini+" até o dia "+data_fim+" foi realizado com sucesso!");
+   		}catch(Exception erro){
+   			erro.printStackTrace();
+   			mensUsuario += " O envio da confirmação por e-mail falhou!";
+   		}
+   		
     }else{
     	mensUsuario = "Falha no Agendamento: " +strErro;
     }
 
 
-try {
-	HC_Lab_pessoa usuario = new HC_Lab_pessoa();
-	usuario.setConnexao(conn);
-	usuario.setInTransaction(true);
-	usuario.setCodpessoa(Long.parseLong(session.getAttribute("usuario").toString()));
-	usuario.lista();
-	
-	Email email = new Email();
-	email.enviaEmail("leo@dl.inf.br", "", "Agendamento realizado!", "O Agendamento do horário "+hora_ini+ " do dia "+data_ini+" até o dia "+data_fim+" foi realizado com sucesso!");
-}catch(Exception erro){
-	erro.printStackTrace();
-	mensUsuario += " O envio da confirmação por e-mail falhou!";
-}
+
 
 if(conn != null)
     conn.close();

@@ -14,6 +14,8 @@
 <%@page import="com.Utilitario"%>
 <%@page import="java.text.SimpleDateFormat"%><%@page import="com.DBSettings"%><%@page import="java.util.Date"%><%@page import="java.util.Calendar"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="com.*"%>
+<%@page import="com.funcoes.*"%>
 <%@page contentType="text/x-json; charset=UTF-8"%>
 <%
 	response.setContentType("text/x-json; charset=UTF-8");
@@ -51,6 +53,22 @@
 				agendamento.update();
 			};
 		
+			try{
+				// ----
+				HC_Lab_pessoa usuario = new HC_Lab_pessoa();
+				usuario.setConnexao(conn);
+				usuario.setInTransaction(true);
+				usuario.setCodpessoa(agendamento.getRsCodaluno());
+				usuario.lista();
+				usuario.next();
+				
+				Email email = new Email();
+				email.enviaEmail(usuario.getRsDescemail(), "", "Agendamento Cancelado!", "O Agendamento do horário "+new SimpleDateFormat("HH:mm").format(agendamento.getRsDataini().getTime())+ 
+																" do dia "+new SimpleDateFormat("dd/MM/yyyy").format(agendamento.getRsDataini().getTime())+" foi cancelado conforme sua solicitação!");
+			}catch (Exception erro){
+				erro.printStackTrace();
+			}
+			
 			objRetorno.put("ok", "ok");
 			out.print(objRetorno.toJSONString());
 	} else	if (cmd.equalsIgnoreCase("carregapresenca")) { 

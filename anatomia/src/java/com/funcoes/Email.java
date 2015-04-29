@@ -25,7 +25,7 @@ public class Email {
 		Connection conn = null;
 		
 		final String username = "unisc@dl.inf.br";
-		final String password = "qwe134679";
+		final String password = "qwe316497";
  
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");

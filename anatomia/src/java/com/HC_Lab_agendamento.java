@@ -12,6 +12,8 @@ import java.util.GregorianCalendar;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.funcoes.Email;
+
 
 public class HC_Lab_agendamento extends Lab_agendamento{
     public HC_Lab_agendamento(){
@@ -347,6 +349,19 @@ public class HC_Lab_agendamento extends Lab_agendamento{
     				lab.setSeqagendametno(lab.getRsSeqagendametno());
     				lab.setFlagstaus("C");
     				lab.update();
+    				
+    				// ----
+    				HC_Lab_pessoa usuario = new HC_Lab_pessoa();
+    				usuario.setConnexao(conn);
+    				usuario.setInTransaction(true);
+    				usuario.setCodpessoa(lab.getRsCodaluno());
+    				usuario.lista();
+    				usuario.next();
+    				
+    				Email email = new Email();
+    				email.enviaEmail(usuario.getRsDescemail(), "", "Agendamento Cancelado!", "O Agendamento do horário "+new SimpleDateFormat("HH:mm").format(dtIni)+ 
+    																" do dia "+new SimpleDateFormat("dd/MM/yyyy").format(dtIni)+" foi cancelado pois um professor reservou o laboratório!");
+    				
     				lab.next();
     			}
     			

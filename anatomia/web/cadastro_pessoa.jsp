@@ -32,7 +32,7 @@ Connection conn = DBSettings.getConexao();
     //if (editando) {
     
    	int matriculaOriginal = 0, cursoOriginal = 0;
-   	long telefoneOriginal = 0;
+   	String telefoneOriginal = "";
    	String nomeOriginal = "", senhaOriginal = "", emailOriginal = "", tipoOriginal = "", situacaoOriginal = "";
     	
     if (codPessoa != 0) {
@@ -45,7 +45,7 @@ Connection conn = DBSettings.getConexao();
     		matriculaOriginal = rs.getString("num_matricula")!=null? Integer.parseInt(rs.getString("num_matricula")):0;
     		
     		cursoOriginal = rs.getString("cod_curso")!=null?  Integer.parseInt(rs.getString("cod_curso")):0;
-    		telefoneOriginal =rs.getString("num_telefone")!=null? Long.parseLong(rs.getString("num_telefone")):0;
+    		telefoneOriginal =rs.getString("num_telefone")!=null? rs.getString("num_telefone"):"";  
     		emailOriginal =rs.getString("desc_email")!=null? rs.getString("desc_email").toString():"";
     		tipoOriginal =rs.getString("flag_tipo")!=null? rs.getString("flag_tipo").toString():"";
     		nomeOriginal =rs.getString("desc_nome")!=null? rs.getString("desc_nome").toString():"";

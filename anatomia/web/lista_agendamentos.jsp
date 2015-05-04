@@ -172,9 +172,12 @@ $(document).ready(function() {
 	$(".data").mask("99/99/9999");
     
 	$(".sys_cancela").button().click(function(){
+		if(confirm("Deseja cancelar este agendamento?")==1){
 		$.blockUI({ message: 'Cancelado agendamento...' });
+		
 			cancelaAgendamento($(this).attr("seqagend"));
 	 	$.unblockUI();
+		}
 		return false;
 		
 	});
@@ -328,7 +331,7 @@ function cancelaAgendamento(seqagend){
 	      }
 	   }); 
 	
-	
+
 } 
 
 function isNumberKey(evt)

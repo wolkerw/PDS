@@ -207,11 +207,25 @@ $(document).ready(function() {
 			formulario.cod_professor.focus();
 			cancela_evento(evento);
 			
-		} else {
+		} else if ((data_fim != "") && (data_ini != "")){
+			
+			   var dtInicio = data_ini.split("/");
+			   var dtFim = data_fim.split("/");
+			   data1 = new Date(dtInicio[2] + "/" + dtInicio[1] + "/" + dtInicio[0]);
+			   data2 = new Date(dtFim[2] + "/" + dtFim[1] + "/" + dtFim[0]);
+				   
+				var total = dateDiferencaEmDias( data1, data2 );
+
+				if (total > 7){
+					alert('O intervalo máximo do agendamento de 7 dias!');
+					formulario.data_ini.focus();
+					cancela_evento(evento);
+				} else {
 		
-			var forme = document.getElementById('forme');
-   			forme.action="frmCad_agendamento.jsp";
-			forme.submit();
+					var forme = document.getElementById('forme');
+   					forme.action="frmCad_agendamento.jsp";
+					forme.submit();
+				}
 		}
 	});	
 	
@@ -244,6 +258,15 @@ $(document).ready(function() {
 	});
 	
 });
+
+// a e b são objetos Date do JS
+function dateDiferencaEmDias(a, b) {
+   // Descartando timezone e horário de verão
+   var utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+   var utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+   return Math.floor((utc2 - utc1) / ( 1000 * 60 * 60 * 24) );
+}
 
 function montaGrid(){
 	var form = document.getElementById('forme');
@@ -366,19 +389,15 @@ function cancela_evento(evento) {
 	       				   <strong>Hora:</strong><br>
 	       				    <select style="width: 80%" id="hora_ini" name="hora_ini"" class="glowing-border" >
 	       				    <option value="">Escolha a Hora</option>
-	       				    <option value="7" <%="7".equals(hora_ini)?"selected='selected'":"" %>>07:00</option>
 	       				    <option value="8" <%="8".equals(hora_ini)?"selected='selected'":"" %>>08:00</option>
 	       				    <option value="9" <%="9".equals(hora_ini)?"selected='selected'":"" %>>09:00</option>
 	       				    <option value="10" <%="10".equals(hora_ini)?"selected='selected'":"" %>>10:00</option>
 	       				    <option value="11" <%="11".equals(hora_ini)?"selected='selected'":"" %>>11:00</option>
-	       				    <option value="13" <%="13".equals(hora_ini)?"selected='selected'":"" %>>13:00</option>
 	       				    <option value="14" <%="14".equals(hora_ini)?"selected='selected'":"" %>>14:00</option>
 	       				    <option value="15" <%="15".equals(hora_ini)?"selected='selected'":"" %>>15:00</option>
 	       				    <option value="16" <%="16".equals(hora_ini)?"selected='selected'":"" %>>16:00</option>
 	       				    <option value="17" <%="17".equals(hora_ini)?"selected='selected'":"" %>>17:00</option>
 	       				    <option value="19" <%="19".equals(hora_ini)?"selected='selected'":"" %>>19:00</option>
-	       				    <option value="20" <%="20".equals(hora_ini)?"selected='selected'":"" %>>20:00</option>
-	       				    <option value="21" <%="21".equals(hora_ini)?"selected='selected'":"" %>>21:00</option>
 	       				    </select>
 		           
 		           </div>
@@ -462,10 +481,8 @@ function cancela_evento(evento) {
                         <tbody>
                         <%
                         while((rs!=null) && (rs.next())){
-                        	if ((Integer.parseInt(rs.getString("hora")) > 6) && ((Integer.parseInt(rs.getString("hora")) < 12)) 
-                        			|| (Integer.parseInt(rs.getString("hora")) > 12) && ((Integer.parseInt(rs.getString("hora")) < 18)) 
-                            		|| (Integer.parseInt(rs.getString("hora")) > 18) && ((Integer.parseInt(rs.getString("hora")) < 22))                            	 
-                        			){
+                        	if ((Integer.parseInt(rs.getString("hora")) > 7) && ((Integer.parseInt(rs.getString("hora")) < 12)) 
+                        			|| (Integer.parseInt(rs.getString("hora")) > 13) && ((Integer.parseInt(rs.getString("hora")) < 20))){
                         %>
                         	<tr>
                         	    <td style="text-align: center; width: 5%" ></td>

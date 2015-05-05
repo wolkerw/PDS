@@ -315,7 +315,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
     		auxfim.add(Calendar.HOUR, horaini+1);
 
 
-    		if (tipousuario.equals("PF")){
+    		if ( (tipousuario.equals("PF")) || (tipousuario.equals("AD")) ){
     			HC_Lab_agendamento lab = new HC_Lab_agendamento();
     			lab.setInTransaction(true);
     			lab.setConnexao(conn);
@@ -397,7 +397,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
     			
     		}
     		
-    		if (!tipousuario.equals("PF")){ 
+    		if ( (!tipousuario.equals("PF")) && (!tipousuario.equals("AD"))){ 
 	    		rs = conn.createStatement().executeQuery("select count(seq_agendametno) as reservas from lab_agendamento where data_ini = '"+new SimpleDateFormat("yyyyMMdd HH:00:00").format(auxini.getTime())+"'");
 	    		if(rs.next()){
 	    			if(rs.getInt("reservas")>=qtdidadevagasmax){
@@ -428,7 +428,7 @@ public class HC_Lab_agendamento extends Lab_agendamento{
 	    		agendamento.setCodassunto(codassunto);
 	    		agendamento.setDataini(auxini.getTime());
 	    		agendamento.setDatafim(auxfim.getTime());
-    			if (!tipousuario.equals("PF")){			    		
+    			if ( (!tipousuario.equals("PF")) && (!tipousuario.equals("AD")) ){			    		
 			    		agendamento.insert();
     			} else {
     				for(int i=0;i<40;i++){

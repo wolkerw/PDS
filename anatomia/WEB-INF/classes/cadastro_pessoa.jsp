@@ -32,7 +32,7 @@ Connection conn = DBSettings.getConexao();
     //if (editando) {
     
    	int matriculaOriginal = 0, cursoOriginal = 0;
-   	long telefoneOriginal = 0;
+   	String telefoneOriginal = "";
    	String nomeOriginal = "", senhaOriginal = "", emailOriginal = "", tipoOriginal = "", situacaoOriginal = "";
     	
     if (codPessoa != 0) {
@@ -42,14 +42,15 @@ Connection conn = DBSettings.getConexao();
     	rs = objSIS_USUARIO.carregaDadosPessoa(codPessoa);
     	
     	while((rs!=null) && (rs.next())){
-    		matriculaOriginal = Integer.parseInt(rs.getString("num_matricula"));
-    		cursoOriginal = Integer.parseInt(rs.getString("cod_curso"));
-    		telefoneOriginal = Long.parseLong(rs.getString("num_telefone"));
-    		emailOriginal = rs.getString("desc_email").toString();
-    		tipoOriginal = rs.getString("flag_tipo").toString();
-    		nomeOriginal = rs.getString("desc_nome").toString();
-    		senhaOriginal = rs.getString("desc_senha").toString();
-    		situacaoOriginal = rs.getString("flag_situacao").toString();
+    		matriculaOriginal = rs.getString("num_matricula")!=null? Integer.parseInt(rs.getString("num_matricula")):0;
+    		
+    		cursoOriginal = rs.getString("cod_curso")!=null?  Integer.parseInt(rs.getString("cod_curso")):0;
+    		telefoneOriginal =rs.getString("num_telefone")!=null? rs.getString("num_telefone"):"";  
+    		emailOriginal =rs.getString("desc_email")!=null? rs.getString("desc_email").toString():"";
+    		tipoOriginal =rs.getString("flag_tipo")!=null? rs.getString("flag_tipo").toString():"";
+    		nomeOriginal =rs.getString("desc_nome")!=null? rs.getString("desc_nome").toString():"";
+    		senhaOriginal =rs.getString("desc_senha")!=null? rs.getString("desc_senha").toString():"";
+    		situacaoOriginal =rs.getString("flag_situacao")!=null? rs.getString("flag_situacao").toString():"";
     	}
     	
     	//String matricula = session.getAttribute("cod_matricula").toString();
@@ -284,7 +285,7 @@ function cancelaCadastroPessoa(seqagend){
 									<input id="txtLG_SITUACAO" type="text" class="form-control campo" placeholder="Digite a situação" name="txtLG_SITUACAO">
 								</div> -->
 								
-								<button type="submit" class="btn btn-default" OnClick="form.action='frmPessoa_cadastro.jsp'; form.submit();">Cadastrar</button>
+								<button type="submit" class="btn btn-default" OnClick="form.action='frmPessoa_cadastro.jsp'; form.submit();">value="<%= editandoValue.equalsIgnoreCase("sim")?"Salvar":"Cadastrar" %></button>
 							</td>
                        	</tr>
                             <!-- <tr>
